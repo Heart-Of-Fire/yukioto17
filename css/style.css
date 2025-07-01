@@ -1,0 +1,220 @@
+/* ===== Глобальные стили ===== */
+body {
+    font-family: 'Comic Sans MS', 'Caveat', cursive, sans-serif;
+    background-color: #FFF5F5;
+    background-image: url('../assets/grid-paper-texture.png');
+    margin: 0;
+    padding: 20px;
+    color: #5A3D5C;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    border: 3px solid #FFD1DC;
+}
+
+.handwritten {
+    font-family: 'Caveat', cursive;
+    color: #C8A2C8;
+    text-shadow: 2px 2px 0px #B5EAD7;
+    font-size: 2.8em;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* ===== Кнопки ===== */
+.btn {
+    background: #C8A2C8;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+    margin: 8px;
+    font-size: 18px;
+    color: white;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+    display: inline-block;
+}
+
+.btn:hover {
+    background: #FFD1DC;
+    transform: translateY(-5px) rotate(3deg);
+    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== Прайс-лист ===== */
+.price-list {
+    margin: 30px 0;
+}
+
+.price-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 20px 0;
+    background: #FFD1DC;
+    border-radius: 20px;
+    border: 3px dashed #C8A2C8;
+    animation: float 5s ease-in-out infinite;
+    transition: all 0.4s;
+}
+
+.price-item:hover {
+    transform: scale(1.03);
+    background: #B5EAD7;
+}
+
+/* ===== Портфолио ===== */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 60px; /* Большие отступы между карточками */
+    padding: 20px;
+    margin: 40px 0;
+}
+
+.work-card {
+    width: 100%;
+    background: #B5EAD7;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: float 6s ease-in-out infinite;
+    animation-delay: calc(var(--order) * 0.1s);
+    position: relative;
+    overflow: hidden;
+}
+
+.work-card::before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+    background: linear-gradient(45deg, #FFD1DC, #C8A2C8, #B5EAD7);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.work-card:hover {
+    transform: rotate(3deg) scale(1.08) translateY(-10px);
+    box-shadow: 8px 8px 0px rgba(0,0,0,0.2), 0 0 25px #FFD1DC;
+}
+
+.work-card:hover::before {
+    opacity: 0.4;
+}
+
+.work-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 3px solid #FFD1DC;
+    transition: transform 0.4s;
+    margin-bottom: 15px;
+}
+
+.work-card:hover img {
+    transform: scale(1.05);
+}
+
+.work-card h3 {
+    font-size: 20px;
+    margin: 15px 0 10px 0;
+    color: #5A3D5C;
+    text-align: center;
+}
+
+.work-card p {
+    font-size: 14px;
+    color: #5A3D5C;
+    margin: 0;
+    line-height: 1.5;
+    text-align: center;
+    padding: 0 10px;
+}
+
+/* ===== Telegram-кнопка ===== */
+.tg-btn {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    animation: pulse 2s infinite, shake 3s infinite;
+    z-index: 100;
+    background: #0088cc;
+    border-radius: 50%;
+    padding: 15px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    transition: all 0.4s;
+}
+
+.tg-btn:hover {
+    transform: scale(1.15) rotate(20deg);
+    animation: none;
+    background: #00a2ff;
+}
+
+/* ===== Анимации ===== */
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0) rotate(0deg);
+    }
+    25% { 
+        transform: translateY(-8px) rotate(1deg);
+    }
+    75% { 
+        transform: translateY(-5px) rotate(-1deg);
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-8deg); }
+    75% { transform: rotate(8deg); }
+}
+
+/* ===== Адаптивность ===== */
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    .container {
+        padding: 20px;
+    }
+    .handwritten {
+        font-size: 2.2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    .work-card {
+        padding: 25px;
+    }
+    .tg-btn {
+        bottom: 25px;
+        right: 25px;
+        padding: 12px;
+    }
+}
